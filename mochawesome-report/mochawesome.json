@@ -1,0 +1,447 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 10,
+    "passes": 10,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-02T15:29:13.485Z",
+    "end": "2021-11-02T15:29:17.253Z",
+    "duration": 3768,
+    "testsRegistered": 10,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ce6ab9c8-4b3b-4af5-9085-6adac4b46390",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+          "title": "Alterar pedido",
+          "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testChangeProduct.spec.js",
+          "file": "\\test\\testChangeProduct.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Alterar pedido\"",
+              "fullTitle": "Alterar pedido \"before all\" hook in \"Alterar pedido\"",
+              "timedOut": false,
+              "duration": 307,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "context('quando informo o id de um pedido existente', function () {\n    request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"leo.padilha\", \"123456\")).end(function (err, res) {\n        expect(res).to.has.status(200);\n        expect(res.body.message).to.equals(\"Sucesso ao realizar o login\");\n        userToken = res.body.data.token;\n        done();\n    });\n});",
+              "err": {},
+              "uuid": "ffd0d20c-3e82-4b8d-bfc8-240d1ea39dc2",
+              "parentUUID": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "cadastrar o pedido com sucesso",
+              "fullTitle": "Alterar pedido cadastrar o pedido com sucesso",
+              "timedOut": false,
+              "duration": 288,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.post(constant.SHOP + constant.URL_PRODUCT).set(constant.TOKEN, userToken).send(requestCreateProduct.bodyRequestCreateProduct(\"Monitor de Vídeo\", 500.99, \"azul\", \"Controle\", 1)).end(function (err, res) {\n    expect(res).to.has.status(201);\n    expect(res.body.message).to.equals(\"Produto adicionado com sucesso\");\n    productId = res.body.data.produtoid;\n    expect(res.body.data.produtoid).to.not.equals(functionValidId.validId(productId));\n    done();\n});",
+              "err": {},
+              "uuid": "0054f259-8d7a-4d44-b903-9466b9b18339",
+              "parentUUID": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "busco pelo produto cadastrado",
+              "fullTitle": "Alterar pedido busco pelo produto cadastrado",
+              "timedOut": false,
+              "duration": 287,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.get(constant.SHOP + constant.URL_PRODUCT + '/' + productId).set(constant.TOKEN, userToken).end(function (err, res) {\n    expect(res).to.has.status(200);\n    expect(res.body.data.produtoid).to.equals(productId);\n    expect(res.body.data.produtocores[0]).to.contains('azul');\n    done();\n});",
+              "err": {},
+              "uuid": "4cc79044-5b6e-4f56-98f3-fe8339d4c955",
+              "parentUUID": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "e altero a descrição desejada",
+              "fullTitle": "Alterar pedido e altero a descrição desejada",
+              "timedOut": false,
+              "duration": 276,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.put(constant.SHOP + constant.URL_PRODUCT + '/' + productId).set(constant.TOKEN, userToken).send(requestCreateProduct.bodyRequestCreateProduct(\"Monitor de Vídeo\", 500.99, \"preto\", \"Controle\", 1)).end(function (err, res) {\n    expect(res).to.has.status(200);\n    expect(res.body.message).to.contains('alterado com sucesso');\n    done();\n});",
+              "err": {},
+              "uuid": "ca1fb51e-4e77-409e-8d8e-c0d852b5e24e",
+              "parentUUID": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "então confirmo que a alteração foi realizada com sucesso",
+              "fullTitle": "Alterar pedido então confirmo que a alteração foi realizada com sucesso",
+              "timedOut": false,
+              "duration": 274,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.get(constant.SHOP + constant.URL_PRODUCT + '/' + productId).set(constant.TOKEN, userToken).end(function (err, res) {\n    expect(res).to.has.status(200);\n    expect(res.body.data.produtoid).to.equals(productId);\n    expect(res.body.data.produtocores[0]).to.contains('preto');\n    done();\n});",
+              "err": {},
+              "uuid": "a3939cb2-08bb-44ca-a84d-b9be63fafc6c",
+              "parentUUID": "607d8b51-5d47-4f13-868d-668f25d5a7b4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0054f259-8d7a-4d44-b903-9466b9b18339",
+            "4cc79044-5b6e-4f56-98f3-fe8339d4c955",
+            "ca1fb51e-4e77-409e-8d8e-c0d852b5e24e",
+            "a3939cb2-08bb-44ca-a84d-b9be63fafc6c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1125,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "e8da14cd-59bf-492b-a451-561082a3e0ea",
+          "title": "Realizar cadastro de produto",
+          "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testCreateNewProduct.spec.js",
+          "file": "\\test\\testCreateNewProduct.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Realizar cadastro de produto\"",
+              "fullTitle": "Realizar cadastro de produto \"before all\" hook in \"Realizar cadastro de produto\"",
+              "timedOut": false,
+              "duration": 276,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "context('quando informo o producto corretamente', function () {\n    request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"leo.padilha\", \"123456\")).end(function (err, res) {\n        expect(res).to.has.status(200);\n        userToken = res.body.data.token;\n        expect(res.body.message).to.equals(\"Sucesso ao realizar o login\");\n        done();\n    });\n});",
+              "err": {},
+              "uuid": "39096201-2cae-4ef8-9882-478dca9b5069",
+              "parentUUID": "e8da14cd-59bf-492b-a451-561082a3e0ea",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "o produto é cadastrado com sucesso",
+              "fullTitle": "Realizar cadastro de produto o produto é cadastrado com sucesso",
+              "timedOut": false,
+              "duration": 275,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.post(constant.SHOP + constant.URL_PRODUCT).set(constant.TOKEN, userToken).send(requestCreateProduct.bodyRequestCreateProduct(\"PS5\", 200.00, \"preto\", \"Controles\", 2)).end(function (err, res) {\n    expect(res).to.status(201);\n    productId = res.body.data.produtoid;\n    expect(res.body.data.produtoid).to.not.equals(functionValidId.validId(productId));\n    expect(res.body.message).to.equals(\"Produto adicionado com sucesso\");\n    expect(res.body.data.produtonome).to.equals('PS5');\n    expect(res.body.data.produtonome).to.be.an('string');\n    expect(res.body.error).to.equals(\"\");\n    done();\n});",
+              "err": {},
+              "uuid": "6648e832-41b3-4e2c-88ab-216e2bb765dd",
+              "parentUUID": "e8da14cd-59bf-492b-a451-561082a3e0ea",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6648e832-41b3-4e2c-88ab-216e2bb765dd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 275,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "75677dc2-7b2b-446f-8f55-07775718d7bf",
+          "title": "Realizar busca de pedido por id",
+          "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testFindProdutctWithId.spec.js",
+          "file": "\\test\\testFindProdutctWithId.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Realizar busca de pedido por id\"",
+              "fullTitle": "Realizar busca de pedido por id \"before all\" hook in \"Realizar busca de pedido por id\"",
+              "timedOut": false,
+              "duration": 277,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "context('quando realizo o login corretamente', function () {\n    request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"leo.padilha\", \"123456\")).end(function (err, res) {\n        expect(res).to.has.status(200);\n        userToken = res.body.data.token;\n        expect(res.body.message).to.equals(\"Sucesso ao realizar o login\");\n        done();\n    });\n});",
+              "err": {},
+              "uuid": "8daccf93-f710-4278-b941-a01aa796c22e",
+              "parentUUID": "75677dc2-7b2b-446f-8f55-07775718d7bf",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "cadastro um produto",
+              "fullTitle": "Realizar busca de pedido por id cadastro um produto",
+              "timedOut": false,
+              "duration": 274,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.post(constant.SHOP + constant.URL_PRODUCT).set(constant.TOKEN, userToken).send(requestCreateProduct.bodyRequestCreateProduct(\"PS6\", 356.99, \"branco\", \"Controles\", 2)).end(function (err, res) {\n    expect(res).to.has.status(201);\n    expect(res.body.message).to.equals(\"Produto adicionado com sucesso\");\n    productId = res.body.data.produtoid;\n    expect(res.body.data.produtoid).to.not.equals(functionValidId.validId(productId));\n    done();\n});",
+              "err": {},
+              "uuid": "94be5e5a-7e0c-4c22-9106-a61b637556ce",
+              "parentUUID": "75677dc2-7b2b-446f-8f55-07775718d7bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "o pedido com o id selecionado deve ser exibido corretamente",
+              "fullTitle": "Realizar busca de pedido por id o pedido com o id selecionado deve ser exibido corretamente",
+              "timedOut": false,
+              "duration": 273,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "request.get(constant.SHOP + constant.URL_PRODUCT + '/' + productId).set(constant.TOKEN, userToken).end(function (err, res) {\n    expect(res).to.has.status(200);\n    expect(res.body.data.produtoid).to.not.equals(functionValidId.validId(productId));\n    expect(res.body.data.produtoid).to.equals(productId);\n    done();\n});",
+              "err": {},
+              "uuid": "0ffc8ca9-bbc4-408f-ade6-68fbff6ab848",
+              "parentUUID": "75677dc2-7b2b-446f-8f55-07775718d7bf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "94be5e5a-7e0c-4c22-9106-a61b637556ce",
+            "0ffc8ca9-bbc4-408f-ade6-68fbff6ab848"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 547,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        },
+        {
+          "uuid": "95e44553-84a3-4f8e-8be4-aa5e48f9cdf9",
+          "title": "Realizar login do usuário",
+          "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testLogin.spec.js",
+          "file": "\\test\\testLogin.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "c25391e7-6e09-43e0-a05a-fc2b4d256d84",
+              "title": "quando informo os dados corretos do usuário",
+              "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testLogin.spec.js",
+              "file": "\\test\\testLogin.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "o login deve ser cadastrado com sucesso",
+                  "fullTitle": "Realizar login do usuário quando informo os dados corretos do usuário o login deve ser cadastrado com sucesso",
+                  "timedOut": false,
+                  "duration": 277,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"leo.padilha\", \"123456\")).end(function (err, res) {\n    expect(res).to.has.status(200);\n    expect(res.body.message).to.equals(\"Sucesso ao realizar o login\");\n    expect(res.body).to.not.be.an(\"array\");\n    done();\n});",
+                  "err": {},
+                  "uuid": "bb55e13c-5514-4267-93e9-b7dcd512d83a",
+                  "parentUUID": "c25391e7-6e09-43e0-a05a-fc2b4d256d84",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "bb55e13c-5514-4267-93e9-b7dcd512d83a"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 277,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            },
+            {
+              "uuid": "8803823a-8a31-4300-a6e2-24a35846fedd",
+              "title": "quando informo o usuário inválido com a senha válida",
+              "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testLogin.spec.js",
+              "file": "\\test\\testLogin.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "o login não é realizado com sucesso",
+                  "fullTitle": "Realizar login do usuário quando informo o usuário inválido com a senha válida o login não é realizado com sucesso",
+                  "timedOut": false,
+                  "duration": 278,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"nome.qualquer\", \"123456\")).end(function (err, res) {\n    expect(res).to.has.status(404);\n    expect(res).to.not.property(res.body);\n    expect(1).to.equals(1);\n    done();\n});",
+                  "err": {},
+                  "uuid": "141253ba-ebb3-4716-ba57-680e90868d9e",
+                  "parentUUID": "8803823a-8a31-4300-a6e2-24a35846fedd",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "141253ba-ebb3-4716-ba57-680e90868d9e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 278,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            },
+            {
+              "uuid": "b8c81192-11cf-4639-a778-fdce31367a8d",
+              "title": "quando informo o usuário válido com a senha inválida",
+              "fullFile": "C:\\Users\\user\\Documents\\Cursos\\API\\QAninja\\MochaEChai\\ApiClientes\\test\\testLogin.spec.js",
+              "file": "\\test\\testLogin.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "o login não é realizado com sucesso",
+                  "fullTitle": "Realizar login do usuário quando informo o usuário válido com a senha inválida o login não é realizado com sucesso",
+                  "timedOut": false,
+                  "duration": 277,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "request.post(constant.SHOP + constant.VALUE_ENDPOINT_LOGIN).send(requestLogin.bodyRequestLogin(\"leo.padilha\", \"123457\")).end(function (err, res) {\n    expect(res).to.has.status(404);\n    expect(res).to.not.property(res.body);\n    expect(1).to.equals(1);\n    done();\n});",
+                  "err": {},
+                  "uuid": "e0f0b762-9178-474a-a041-981ca768561e",
+                  "parentUUID": "b8c81192-11cf-4639-a778-fdce31367a8d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "e0f0b762-9178-474a-a041-981ca768561e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 277,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.1.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.3.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}

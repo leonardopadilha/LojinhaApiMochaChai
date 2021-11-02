@@ -1,0 +1,23 @@
+{
+  "name": "apiclientes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha test/ --reporter mochawesome --require babel-register --timeout 10000 --exit"
+  },
+  "author": "Leonardo Padilha",
+  "license": "ISC",
+  "description": "Teste de API - Lojinha",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
+    "mochawesome": "^6.3.1"
+  }
+}
